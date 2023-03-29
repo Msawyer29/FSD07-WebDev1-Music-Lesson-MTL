@@ -1,0 +1,67 @@
+2023/03/27 Mackenzie
+1. Done / not done since last scrum:
+- Installed Docker Desktop app and Laravel + Laravel Breeze
+- created database "laravel-breeze"
+
+2. To do until next Scrum:
+- finish setup of the initial laravel project
+    - sync .env file in project with myphpadmin database music_lessons OR switch to db laravel-breeze
+- review and edit the laravel user login php files, add custom text where needed, edit to music lesson format
+
+3. Need assistance / figure things out
+- learn how to change registration form and users table using php terminal commands
+
+
+2023/03/28 Mackenzie
+1. Done / not done since last scrum:
+- Install Blade for Laravel - was missing packages which was causing errors
+- Updated Registration form and users table, changed Name to firstname and lastname fields
+- add more fields to table using PHP commands in terminal
+
+2. To do until next Scrum:
+- test and debug Delara registration form updates. New fields: debug phone and email showing error as required field even when filled out.
+- test insert registration form data insert into database
+- begin designing and implementing the calendar to book lessons. Two routes, student view availability, teacher set availability
+
+3. Need assistance / figure things out
+- best method to install calendar, two specific types: teacher calendar and student calendar
+
+
+2023/03/28 Delara
+1. Done / not done since last scrum:
+- Updated registration form to include: phoneno, address
+- Updated users table to inlclude new fields
+
+2. To do until next Scrum:
+- Focus on designing routes for role: student/teacher (select on registration form: radio button/dropbox)
+- if selecting Teacher --> input to form teacherPricePerHour, teacherProfileInfo
+- Design separate route for admin login
+
+3. Need assistance / figure things out
+
+3. Need assistance / figure things out
+- verify if PHP 8.0 will work with laravel 9.5.2
+
+2023/03/29 Mackenzie
+1. Done / not done since last scrum:
+- Create lessons table
+- Create Calendar but need to implement use for Users as single table NOT teacher and student separate
+
+2. To do until next Scrum:
+- In lesson table properly format foreign keys teacherId and studentId to link to id in user table
+- create cpanel domain for project
+
+3. Need assistance / figure things out:
+- link teacherId and studentID as foreign keys to user table
+- figure out how to implement Google Analytics
+
+2023/03/29 Delara
+1. Done / not done since last scrum:
+- Completed updating user table and registration forms
+- Login and dashboard setup for student, teacher and admin
+
+2. To do until next Scrum:
+- Downgrade project, laravel/framework to 9.5.2 + php 8.0
+
+3. Need assistance / figure things out
+- verify if PHP 8.0 will work with laravel 9.5.2
