@@ -26,7 +26,6 @@
 3. Need assistance / figure things out
 - best method to install calendar, two specific types: teacher calendar and student calendar
 
-
 2023/03/28 Delara
 1. Done / not done since last scrum:
 - Updated registration form to include: phoneno, address
@@ -38,9 +37,8 @@
 - Design separate route for admin login
 
 3. Need assistance / figure things out
-
-3. Need assistance / figure things out
 - verify if PHP 8.0 will work with laravel 9.5.2
+
 
 2023/03/29 Mackenzie
 1. Done / not done since last scrum:
@@ -65,3 +63,26 @@
 
 3. Need assistance / figure things out
 - verify if PHP 8.0 will work with laravel 9.5.2
+
+
+2023/03/30 Mackenzie
+1. Done / not done since last scrum:
+- Done: updated entire project (with downgraged php), pulled all new changes and encountered a vite.config.js exception error which caused many hours of delays.
+- I deleted node_modules as I thought we were not allowed to use npm becasue it was used with vue/react and this crashed my project
+- Tried to work without it but I had to reinstal node_modules and install npm ('npm run dev' in terminal must be used for project to work)
+- local host project is back live/functioning and successfully linked to database
+- Not Done: calendar
+2. To do until next Scrum:
+- finish calendar
+- troubleshoot user profile update/save information (email works, name does not + add phone number and address fields for all users)
+3. Need assistance / figure things out:
+
+2023/03/30 Delara
+1. Done / not done since last scrum:
+- setup cpanel domain hosting (musiclessonmtl.fsd07.com)
+- deploy laravel on shared hosting
+- linked database with shared hosting
+2. To do until next Scrum:
+- separate html from php and create layout for all pages
+- if time, implement cart/payment API
+3. Need assistance / figure things out:
