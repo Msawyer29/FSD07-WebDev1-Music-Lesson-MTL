@@ -103,7 +103,7 @@
 - Dashboard: upcoming lessons view, paid lessons, unpaid lessons, link to view teachers and message teacher button (/message route) 
 - Review github pull and use with teacher, we made new repository for downgraded project
 
-2023/03/31 Mackenzie
+2023/03/31 Delara
 1. Done / not done since last scrum:
 - setup Email verification and rest password , finding new bug (conflict between redrict email and customize dashboard) => back to ex Endpoint
 2. To do until next Scrum:
