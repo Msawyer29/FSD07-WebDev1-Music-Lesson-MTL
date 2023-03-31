@@ -99,8 +99,8 @@
 - Book Lesson form saves lesson to database
 - When viewing the calendar after successful book form submission, should see a lesson is stored
 3. Need assistance / figure things out:
-- Figure out design of user experience on domain for student. do they need a dashboard? what should be on it? unpaid lessons? direct user to pay for booked lessons on dashboard /payment route implement to payment API
-- Dashboard: upcoming lessons view, paid lessons, unpaid lessons, link to view teachers? 
+- Figure out design of user experience on domain for student. dashboard - what should be on it? direct user to pay for booked lessons on dashboard /payment route implement to payment API
+- Dashboard: upcoming lessons view, paid lessons, unpaid lessons, link to view teachers and message teacher button (/message route) 
 - Review github pull and use with teacher, we made new repository for downgraded project
 
 2023/03/31 Delara
