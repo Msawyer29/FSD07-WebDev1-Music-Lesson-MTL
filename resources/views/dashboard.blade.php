@@ -14,4 +14,9 @@
             </div>
         </div>
     </div>
+    
+    @if(isset($lessons))
+        @include('calendar')
+    @endif
+
 </x-app-layout>
