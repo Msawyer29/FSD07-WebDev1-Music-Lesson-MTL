@@ -21,20 +21,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// STUDENT DASHBOARD
+
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'student'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// TEACHER DASHBOARD
-Route::get('/teacher_dashboard', function () {
-    return view('teacher_dashboard');
-})->middleware(['auth', 'teacher'])->name('teacher_dashboard');
+// // STUDENT DASHBOARD
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'student'])->name('dashboard');
 
-// ADMIN DASHBOARD
-Route::get('/admin_dashboard', function () {
-    return view('admin_dashboard');
-})->middleware(['auth', 'admin'])->name('admin_dashboard');
+// // TEACHER DASHBOARD
+// Route::get('/teacher_dashboard', function () {
+//     return view('teacher_dashboard');
+// })->middleware(['auth', 'teacher'])->name('teacher_dashboard');
+
+// // ADMIN DASHBOARD
+// Route::get('/admin_dashboard', function () {
+//     return view('admin_dashboard');
+// })->middleware(['auth', 'admin'])->name('admin_dashboard');
 
 Route::get('/about', function () {
     return view('about');

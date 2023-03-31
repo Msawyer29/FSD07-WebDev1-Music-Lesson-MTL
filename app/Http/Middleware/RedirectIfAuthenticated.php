@@ -33,10 +33,16 @@ class RedirectIfAuthenticated
                     return redirect(route('admin_dashboard'));
                 }
 
-                // to user dashboard
+                // to student dashboard
                 else if($user->hasRole('student')) {
                     return redirect(route('dashboard'));
                 }
+
+                else  {
+                    return redirect(route('teacher_dashboard'));
+                }
+
+                
             }
         }
 
