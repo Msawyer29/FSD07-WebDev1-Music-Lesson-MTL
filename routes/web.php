@@ -45,6 +45,10 @@ Route::get('/about', function () {
 // CALENDAR PAGE
 Route::get('/calendar', [LessonController::class, 'index'])->middleware(['auth'])->name('calendar');
 
+// BOOK LESSON FORM SUBMISSION
+Route::get('/booklesson', [LessonController::class, 'create'])->middleware('auth')->name('booklesson');
+Route::post('/booklesson', [LessonController::class, 'store'])->middleware('auth')->name('lessons.store');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
