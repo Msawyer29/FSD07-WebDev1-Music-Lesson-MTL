@@ -32,25 +32,28 @@ class LessonController extends Controller
     public function store(Request $request)
     {
         $lesson = new Lesson();
-        $lesson->startDateTime = $request->query('date'); // populated from calendar page when student clicks book now
+        $lesson->startDateTime = $request->input('startDateTime'); // Get the startDateTime from calendar page when student clicks book now
         $lesson->teacherId = $request->input('teacherId');
         $lesson->studentId = Auth::user()->id; // studentId is populated from the currently logged in user
         $lesson->lessonType = $request->input('lessonType');
-        $lesson->status = $request->input('status');
-        $lesson->paymentConfirmation = $request->input('paymentConfirmation') ? true : false;
+        $lesson->status = 'booked'; // Set the status to 'booked' when creating a new lesson
+        $lesson->paymentConfirmation = false;
         $lesson->bookingTS = now(); // Store the current timestamp as the booking timestamp
         $lesson->save();
 
-        return redirect()->route('calendar.index')->with('success', 'Lesson booked successfully!');
+        // Redirect back to the dashboard with a success message
+        return redirect()->route('dashboard')->with('success', 'Lesson booked successfully!');
     }
 
     const LESSON_TYPES = ['guitar', 'bass', 'piano', 'vocal'];
-    
+
     public function create(Request $request)
     {
         $teachers = User::where('role', 'teacher')->get();
         $lessonTypes = self::LESSON_TYPES;
 
-        return view('booklesson', compact('teachers', 'lessonTypes'));
+        $lessons = Lesson::all(); // Fetch all lessons from the database
+
+        return view('booklesson', compact('teachers', 'lessonTypes', 'lessons'));
     }
 }

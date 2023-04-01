@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreignId('teacherId')->constrained('users');
             $table->foreignId('studentId')->constrained('users');
             $table->enum('lessonType', ['guitar', 'bass', 'piano', 'vocal']);
-            $table->enum('status', ['available', 'booked', 'cancelled']);
-            $table->boolean('paymentConfirmation');
+            $table->enum('status', ['available', 'booked', 'cancelled'])->default('available');
+            $table->boolean('paymentConfirmation')->default(0);
             $table->timestamp('bookingTS');
         });
     }

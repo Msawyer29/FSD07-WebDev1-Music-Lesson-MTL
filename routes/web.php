@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +24,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // STUDENT DASHBOARD
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware('student')->name('dashboard');
+    Route::get('/dashboard', [CalendarController::class, 'index'])->middleware('student')->name('dashboard');
 
     // TEACHER DASHBOARD
     Route::get('/teacher_dashboard', function () {
@@ -42,12 +41,18 @@ Route::get('/about', function () {
     return view('about');
 });
 
-// CALENDAR PAGE
-Route::get('/calendar', [LessonController::class, 'index'])->middleware(['auth'])->name('calendar');
-
-// BOOK LESSON FORM SUBMISSION
+// Render the lesson booking form
 Route::get('/booklesson', [LessonController::class, 'create'])->middleware('auth')->name('booklesson');
-Route::post('/booklesson', [LessonController::class, 'store'])->middleware('auth')->name('lessons.store');
+
+// Process the lesson booking form submission
+Route::post('/booklesson', [LessonController::class, 'store'])->middleware('auth')->name('booklesson.store');
+
+Route::post('/lessons', [LessonController::class, 'store'])->middleware('auth')->name('lessons.store');
+
+// After successful submission, redirect to dashboard
+Route::get('/booklesson/success', function () {
+    return redirect()->route('dashboard');
+})->middleware('auth')->name('booklesson.success');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
