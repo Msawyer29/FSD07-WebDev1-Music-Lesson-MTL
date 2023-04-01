@@ -110,3 +110,25 @@
 - debuging redirect or finding new way to solve this problem
 3. Need assistance / figure things out:
 - need consulation
+
+
+2023/04/01 Mackenzie
+1. Done / not done since last scrum:
+- Redesigned student user experience when booking a lesson. No more calendar view.
+- Implemented successful Book Lesson view with calendar. Successfuly books new lesson and logs to database with input fields formatted corrwectly
+- Implemented new routes, upon successful book lesson submission student is redirected back to dashboard and displayed a success message
+- Dashboard greeting changed from "You are logged in as Student!" to personalised greeting:
+{{ __('Hello ') }}{{ Auth::user()->firstname }},{{ __(" you're logged in as a ") }}{{ Auth::user()->role }}{{ __('.') }} 
+2. To do until next Scrum:
+- On dashboard display upcoming booked lessons to student
+3. Need assistance / figure things out:
+- Figure out constarint so that when booking a lesson student can not select a timeslot before current DateTime
+
+2023/04/01 Delara
+1. Done / not done since last scrum:
+- debuging redirect or finding new way to solve this problem, work on messenger system , create table (model, view, controller)
+Connection with Database and redirect (view)
+2. To do until next Scrum:
+- customize messenger , try to implement index , work on show method
+3. Need assistance / figure things out:
+- implementation messenger (how can have separate query for fetch data for different role )
