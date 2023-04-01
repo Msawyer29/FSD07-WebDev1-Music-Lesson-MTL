@@ -8,12 +8,14 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __('Hello ') }}{{ Auth::user()->firstname }},{{ __(" you're logged in as a ") }}{{ Auth::user()->role }}{{ __('.') }}
+                <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-between items-center">
+                    <span>
+                        {{ __('Hello ') }}{{ Auth::user()->firstname }},{{ __(" you're logged in as a ") }}{{ Auth::user()->role }}{{ __('.') }}
+                    </span>
                     @if (session('success'))
-                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                        <span class="text-green-700">
                             {{ session('success') }}
-                        </div>
+                        </span>
                     @endif
                 </div>
             </div>
@@ -21,20 +23,25 @@
     </div>
 
     @section('content')
-        <div class="container">
+        <div class="container dashboard-container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card dashboard-card">
                         <div class="card-header">Booked Lessons</div>
 
-                        <div class="card-body">
+                        <div class="card-body dashboard-calendar">
                             <div id="calendar"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" />
+    @endsection
 
+    @section('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.5/index.global.min.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 var calendarEl = document.getElementById('calendar');
@@ -50,5 +57,4 @@
             });
         </script>
     @endsection
-
 </x-app-layout>

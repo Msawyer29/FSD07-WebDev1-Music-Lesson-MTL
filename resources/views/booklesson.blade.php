@@ -73,8 +73,8 @@
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
                 initialView: 'timeGridWeek',
-                slotMinTime: '08:00:00',
-                slotMaxTime: '17:00:00',
+                slotMinTime: '09:00:00',
+                slotMaxTime: '18:00:00',
                 slotLabelInterval: '01:00:00',
                 slotDuration: '01:00:00',
                 slotLabelFormat: {
