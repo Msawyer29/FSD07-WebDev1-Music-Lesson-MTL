@@ -36,7 +36,7 @@ class LessonController extends Controller
         $lesson->teacherId = $request->input('teacherId');
         $lesson->studentId = Auth::user()->id; // studentId is populated from the currently logged in user
         $lesson->lessonType = $request->input('lessonType');
-        $lesson->status = 'booked'; // Set the status to 'booked' when creating a new lesson
+        $lesson->status = 'booked'; // Set the status to 'booked' when book a new lesson is
         $lesson->paymentConfirmation = false;
         $lesson->bookingTS = now(); // Store the current timestamp as the booking timestamp
         $lesson->save();
@@ -55,5 +55,24 @@ class LessonController extends Controller
         $lessons = Lesson::all(); // Fetch all lessons from the database
 
         return view('booklesson', compact('teachers', 'lessonTypes', 'lessons'));
+    }
+
+    public function getBookedSlots($teacherId)
+    {
+        $bookedLessons = Lesson::where('teacherId', $teacherId)->get();
+
+        $bookedSlots = [];
+
+        foreach ($bookedLessons as $lesson) {
+            $bookedSlots[] = [
+                'start' => $lesson->startDateTime,
+                'end' => $lesson->endDateTime,
+                'backgroundColor' => 'red',
+                'textColor' => 'white',
+                'editable' => false
+            ];
+        }
+
+        return response()->json($bookedSlots);
     }
 }

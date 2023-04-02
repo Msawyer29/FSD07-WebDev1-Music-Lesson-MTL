@@ -1,6 +1,7 @@
 <x-app-layout>
+    @section('content')
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-900 dark:text-gray-100 leading-tight">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
@@ -22,7 +23,6 @@
         </div>
     </div>
 
-    @section('content')
         <div class="container dashboard-container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
@@ -36,7 +36,6 @@
                 </div>
             </div>
         </div>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" />
     @endsection
 
     @section('scripts')
@@ -50,7 +49,7 @@
                     initialView: 'dayGridMonth',
                     height: 'auto',
                     contentHeight: 'auto',
-                    events: {!! isset($events) ? json_encode($events) : '[]' !!},
+                    events: {!! isset($events) ? json_encode($events) : '[]' !!}
                 });
 
                 calendar.render();

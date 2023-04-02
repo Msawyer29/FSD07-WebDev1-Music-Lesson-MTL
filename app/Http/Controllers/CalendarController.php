@@ -23,13 +23,13 @@ class CalendarController extends Controller
 
         // Add the teacher name to each lesson
         foreach ($bookedLessons as $lesson) {
-            $lesson->teacherName = $lesson->teacher->first_name . ' ' . $lesson->teacher->last_name;
+            $lesson->teacherName = $lesson->teacher->firstname . ' ' . $lesson->teacher->lastname;
         }
 
         // Transform the lessons into an array of events for the calendar
         $events = $bookedLessons->map(function ($lesson) {
             return [
-                'title' => $lesson->lessonType . ' lesson with ' . $lesson->teacherName,
+                'title' => $lesson->lessonType . ' lesson - ' . $lesson->teacherName,
                 'start' => $lesson->startDateTime,
                 'end' => $lesson->endDateTime,
                 'backgroundColor' => 'blue',

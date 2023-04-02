@@ -41,6 +41,7 @@ Route::get('/about', function () {
     return view('about');
 });
 
+//---------- BOOK LESSON ROUTES ----------//
 // Render the lesson booking form
 Route::get('/booklesson', [LessonController::class, 'create'])->middleware('auth')->name('booklesson');
 
@@ -53,6 +54,9 @@ Route::post('/lessons', [LessonController::class, 'store'])->middleware('auth')-
 Route::get('/booklesson/success', function () {
     return redirect()->route('dashboard');
 })->middleware('auth')->name('booklesson.success');
+
+// Route for AJAX request to fetch the booked slots for the selected teacher and render them on the calendar
+Route::get('/booklesson/get-booked-slots/{teacherId}', [LessonController::class, 'getBookedSlots'])->name('getBookedSlots');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
