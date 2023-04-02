@@ -77,10 +77,11 @@
 
                             // Display the error message with the teacher's name
                             alert(
-                                `You cannot book a lesson in that time slot, you have a lesson booked at that time with the teacher (${teacherFirstName} ${teacherLastName}).`);
+                                `You cannot book a lesson in that time slot, you have a lesson booked at that time with the teacher (${teacherFirstName} ${teacherLastName}).`
+                            );
                         } else {
-                            // Proceed with the booking process if there is no conflict
-                            callback();
+                            // Proceed with the booking process if there is no conflict // Pass the expected arguments to the callback function
+                            callback(false, null);
                         }
                     },
                     error: function(error) {
@@ -213,7 +214,7 @@
 
             });
 
-            // updatedBookedSlots shows selected Teacher's booked slots in red
+            // function to display booked lesson slots on calendar when student selects a teacher from the drop-down list
             function updateBookedSlots(teacherId, calendar) {
                 // Clear the previous events from the calendar
                 calendar.getEvents().forEach(event => event.remove());
@@ -226,6 +227,7 @@
                         dataType: 'json',
                         success: function(data) {
                             data.forEach(function(slot) {
+                                // Add the event directly from the server response
                                 calendar.addEvent(slot);
                             });
                         },
@@ -235,7 +237,7 @@
                     });
                 }
             }
-
+            
             // Add a change event listener for the teacherName select element
             $('#teacherName').on('change', function() {
                 updateBookedSlots($(this).val(), calendar);

@@ -56,7 +56,7 @@ Route::get('/booklesson/success', function () {
 })->middleware('auth')->name('booklesson.success');
 
 // Route for AJAX request to fetch the booked slots for the selected teacher and render them on the calendar
-Route::get('/booklesson/get-booked-slots/{teacherId}', [LessonController::class, 'getBookedSlots'])->name('getBookedSlots');
+Route::get('/booklesson/get-booked-slots/{teacherId}', [LessonController::class, 'getBookedSlots']);
 
 //Route to check for lesson conflict when student books lesson (check if lesson exists with other teacher at that time)
 Route::post('/booklesson/check-lesson-conflict', [LessonController::class, 'checkLessonConflict'])->name('booklesson.check-lesson-conflict');

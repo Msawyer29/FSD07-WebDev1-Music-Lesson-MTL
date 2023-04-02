@@ -6,6 +6,7 @@ use App\Models\Lesson;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class LessonController extends Controller
 {
@@ -64,12 +65,15 @@ class LessonController extends Controller
         $bookedSlots = [];
 
         foreach ($bookedLessons as $lesson) {
+            // $start = Carbon::parse($lesson->startDateTime); // booked time slot temp fix to properly display "9:00 - 10:00" otherwise start time duplicates
+            $end = Carbon::parse($lesson->endDateTime);
             $bookedSlots[] = [
+                'title' => $end->format('g:i'), // booked time slot temp fix, can not include start time in title or it duplicates
                 'start' => $lesson->startDateTime,
                 'end' => $lesson->endDateTime,
                 'backgroundColor' => 'red',
                 'textColor' => 'white',
-                'editable' => false
+                'editable' => false,
             ];
         }
 
