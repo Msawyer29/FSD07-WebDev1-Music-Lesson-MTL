@@ -17,7 +17,8 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        {{ __('Hello ') }}{{ Auth::user()->firstname }},{{ __(" you're logged in as a ") }}{{ Auth::user()->role }}{{ __('. You can book a lesson anytime 9-5, 7 days a week!') }}
+                        {{ __('Hello ') }}{{ Auth::user()->firstname }}, you can book a lesson anytime 9-5, Monday-Friday!
+                        Please select a teacher to view their availability. Unavailable time slots are marked in red.
                     </div>
                 </div>
             </div>
@@ -58,6 +59,36 @@
         <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.5/index.global.min.js"></script>
         <script>
+            function checkLessonConflict(teacherId, studentId, startDateTime, callback) {
+                $.ajax({
+                    url: `/booklesson/check-lesson-conflict`,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        '_token': $('meta[name="csrf-token"]').attr('content'),
+                        'teacherId': teacherId,
+                        'studentId': studentId,
+                        'startDateTime': startDateTime
+                    },
+                    success: function(data) {
+                        if (data.conflict) {
+                            let teacherFirstName = data.lesson.teacher.firstname;
+                            let teacherLastName = data.lesson.teacher.lastname;
+
+                            // Display the error message with the teacher's name
+                            alert(
+                                `You cannot book a lesson in that time slot, you have a lesson booked at that time with the teacher (${teacherFirstName} ${teacherLastName}).`);
+                        } else {
+                            // Proceed with the booking process if there is no conflict
+                            callback();
+                        }
+                    },
+                    error: function(error) {
+                        console.error('Error checking lesson conflict:', error);
+                    }
+                });
+            }
+
             function formatDate(date) {
                 const dateFormatter = new Intl.DateTimeFormat('en-US', {
                     year: 'numeric',
@@ -74,12 +105,13 @@
                 return formattedDate;
             }
 
-            // Declare the calendar variable outside the event listener
+            // Declare the calendar and lessonForm variables outside the event listener
             var calendar;
+            var lessonForm;
 
             document.addEventListener('DOMContentLoaded', function() {
                 var calendarEl = document.getElementById('calendar');
-                var lessonForm = document.getElementById('lesson-form');
+                lessonForm = document.getElementById('lesson-form');
                 calendar = new FullCalendar.Calendar(calendarEl, {
                     schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
                     initialView: 'timeGridWeek',
@@ -155,6 +187,30 @@
 
                 calendar.render();
 
+                // Add a submit event listener to the lesson form, checks for lesson conflict and makes sure timeslot is selected
+                lessonForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    var teacherId = document.getElementById('teacherName').value;
+                    var studentId = document.getElementById('studentId').value;
+                    var startDateTimeInput = document.getElementsByName('startDateTime')[0];
+                    var startDateTime = startDateTimeInput.value;
+
+                    if (!startDateTime) {
+                        alert('Please select a time slot before submitting the form.');
+                        return;
+                    }
+
+                    checkLessonConflict(teacherId, studentId, startDateTime, function(conflict, lesson) {
+                        if (conflict) {
+                            alert('You cannot book a lesson in that time slot, you have a lesson booked at that time with the teacher (' +
+                                lesson.teacher.first_name + ' ' + lesson.teacher.last_name + ').');
+                        } else {
+                            lessonForm.submit();
+                        }
+                    });
+                });
+
             });
 
             // updatedBookedSlots shows selected Teacher's booked slots in red
@@ -183,21 +239,6 @@
             // Add a change event listener for the teacherName select element
             $('#teacherName').on('change', function() {
                 updateBookedSlots($(this).val(), calendar);
-            });
-
-            // Add a submit event listener to the lesson form
-            lessonForm.addEventListener('submit', function(event) {
-                var startDateTimeInput = document.getElementsByName(
-                    'startDateTime')[0];
-
-                // Log the startDateTime value to the console for debugging purposes
-                // console.log('Form submitted with startDateTime value:', startDateTimeInput.value);
-
-                // If the startDateTime value is empty, prevent form submission and display an alert
-                if (!startDateTimeInput.value) {
-                    event.preventDefault();
-                    alert('Please select a time slot before submitting the form.');
-                }
             });
         </script>
     @endsection

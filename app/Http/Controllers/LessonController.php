@@ -75,4 +75,28 @@ class LessonController extends Controller
 
         return response()->json($bookedSlots);
     }
+
+    public function checkLessonConflict(Request $request)
+    {
+        $studentId = $request->input('studentId');
+        $startDateTime = $request->input('startDateTime');
+
+        $conflictingLesson = Lesson::where('studentId', $studentId)
+            ->where('startDateTime', $startDateTime)
+            ->with('teacher')
+            ->first();
+
+        if ($conflictingLesson) {
+            return response()->json([
+                'conflict' => true,
+                'lesson' => $conflictingLesson,
+                'teacher_firstname' => $conflictingLesson->teacher->firstname,
+                'teacher_lastname' => $conflictingLesson->teacher->lastname
+            ]);
+        } else {
+            return response()->json([
+                'conflict' => false
+            ]);
+        }
+    }
 }
