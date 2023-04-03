@@ -40,4 +40,15 @@ class CalendarController extends Controller
 
         return view('dashboard', compact('events'));
     }
+
+    public function unpaidLessons()
+    {
+        $studentId = Auth::id();
+
+        $unpaidLessons = Lesson::where('studentId', $studentId)
+            ->where('paymentConfirmation', 0)
+            ->get();
+
+        return view('lessonmanager', compact('unpaidLessons'));
+    }
 }

@@ -56,7 +56,6 @@
 
     @yield('scripts')
     @section('scripts')
-        <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.5/index.global.min.js"></script>
         <script>
             function checkLessonConflict(teacherId, studentId, startDateTime, callback) {
