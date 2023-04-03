@@ -195,6 +195,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /* Laravel Meesenger Service provider */
+        Cmgmyr\Messenger\MessengerServiceProvider::class,
+
     ],
 
     /*

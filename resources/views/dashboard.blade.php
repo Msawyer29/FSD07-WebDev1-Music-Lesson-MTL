@@ -1,3 +1,7 @@
+<head>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+
 <x-app-layout>
     @section('content')
     <x-slot name="header">
@@ -31,6 +35,9 @@
 
                         <div class="card-body dashboard-calendar">
                             <div id="calendar"></div>
+                            <div class="text-center mt-3">
+                                <a href="{{ route('lessonmanager') }}" class="btn btn-primary">Make a Payment</a>
+                            </div>
                         </div>
                     </div>
                 </div>
