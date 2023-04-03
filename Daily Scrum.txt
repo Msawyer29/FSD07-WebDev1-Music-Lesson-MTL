@@ -132,3 +132,29 @@ Connection with Database and redirect (view)
 - customize messenger , try to implement index , work on show method
 3. Need assistance / figure things out:
 - implementation messenger (how can have separate query for fetch data for different role )
+
+
+2023/04/02 Mackenzie
+1. Done / not done since last scrum:
+DONE 
+- On student dashboard display upcoming booked lessons to student, loads lessons with all teachers from lessons table
+- Student can not book a new lesson that is < current DateTime, student can only book monday - friday
+- Student can select a teacher and calendar updates so student can view their available lesson spots and booked/unavailable spots when booking new lesson on calendar in /booklesson view.
+- Student selects teacher to view availability in calendar, now there is a check conflict to see if the available timeslot with one teacher, conflicts with a lesson the student already has booked with another teacher
+- Update booked lesson timeslot format to "9:00 - 10:00" red background
+2. To do until next Scrum:
+- Format student dashboard calendar
+- On student dashboard include table with unpaid lessons
+- add link to "pay now" for unpaid lessons
+- Begin work on payment API implementation
+3. Need assistance / figure things out:
+- Figure out payment API application, possibly consult with Gregory on 4/3
+
+2023/04/02‌ Delara
+1. Done / not done since last scrum:
+- Creating a messenger system 
+- changing the path to using the Laravel Messenger package, creating a controller and root and view 
+- creating a messenger to send message from students to professors and vice versa, the possibility of replying and deleting and having inbox 
+2. To do until next Scrum:
+- Working on Admin dashboard 
+3. Need assistance / figure things out:
