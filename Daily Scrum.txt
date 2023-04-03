@@ -158,27 +158,3 @@ DONE
 2. To do until next Scrum:
 - Working on Admin dashboard 
 3. Need assistance / figure things out:
-
-
-2023/04/03 Mackenzie
-1. Done / not done since last scrum:
-- Create PaymentController.php, lessonmanager.blade.php, payment.blade.php
-- Lessonmanager.blade.php shows table where lessons are unpaid with button to initiate payment process
-- payment.blade.php uses stripe api, student enters credit card and submit
-- Implement Stripe Payment API, setup Stripe in .env
-- create payment routes in web.php
-2. To do until next Scrum:
-- Debugg error submnitting payment form, error says GET method not allowed only POST, and I am using POST for all routes where needed
-- Working on Admin dashboard & Teacher dashboard
-3. Need assistance / figure things out:
--  May have to move view all unpaid lessons table on view /lessonmanager to /payment view so that the upaid lessons table is on the same page as the stripe api payment form to submit payment
-- continue debugging payment flow/process find solution ASAP and move on to other parts of project
-
-2023/04/0‌3 Delara
-1. Done / not done since last scrum:
-- trying to find a way to fix problem after merge
-- create messageController and messenger folder and their style  
-2. To do until next Scrum:
-- Working on Admin dashboard 
-3. Need assistance / figure things out:
-- working with git repository, notepad++ and source tree
