@@ -159,7 +159,6 @@ DONE
 - Working on Admin dashboard 
 3. Need assistance / figure things out:
 
-
 2023/04/03 Mackenzie
 1. Done / not done since last scrum:
 - Create PaymentController.php, lessonmanager.blade.php, payment.blade.php
