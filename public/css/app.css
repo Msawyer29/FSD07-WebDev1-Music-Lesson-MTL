@@ -142,6 +142,7 @@
     font-weight: bold;
     color: #111827;
     font-size: x-large;
+    margin-bottom: 40px;
 }
 
 .lesson-manager-table {
@@ -237,4 +238,52 @@
     transform: translateX(-50%);
     border: 10px solid transparent;
     border-top-color: #ccc;
+}
+
+/*----- payment.blade.php -----*/
+.card-header.text-center {
+    font-weight: bold;
+    color: #111827;
+    font-size: x-large;
+    margin-top: 40px;
+}
+
+.payment-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 50px;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.payment-info {
+    text-align: center;
+}
+
+.stripe-element {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #0C1248;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* to style the Confirm Payment button */
+#payment-form .btn-primary {
+    background-color: #0C1248;
+    border-color: #0C1248;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#payment-form .btn-primary:hover {
+    background-color: #2779bd;
+    border-color: #2779bd;
+    color: #fff;
 }

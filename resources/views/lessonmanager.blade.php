@@ -53,9 +53,7 @@
                                                     <td>{{ $lesson->bookingTS }}</td>
                                                     <td class="text-center">
                                                         <div class="pay-now-container">
-                                                            <form
-                                                                action="{{ route('payment.initiate', ['lessonId' => $lesson->id]) }}"
-                                                                method="POST">
+                                                            <form action="{{ route('payment.initiate', ['lessonId' => $lesson->id]) }}" method="POST">
                                                                 @csrf
                                                                 <input type="hidden" name="lessonId"
                                                                     value="{{ $lesson->id }}">
