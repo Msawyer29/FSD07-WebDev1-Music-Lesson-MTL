@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-// use Cmgmyr\Messenger\Traits\Messagable;
-
+use Cmgmyr\Messenger\Traits\Messagable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Messagable;
 
     // use Messageable;
 

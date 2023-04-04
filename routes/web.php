@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\MessagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,11 +72,21 @@ Route::post('/payment-initiate/{lessonId}', [PaymentController::class, 'initiate
 Route::post('/payment-process', [PaymentController::class, 'processPayment'])->name('payment.process');
 Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//----------MESSENGER--------------------//
+Route::group(['middleware' => 'auth', 'prefix' => 'messages', 'as' => 'messages'], function () {
+Route::get('/', [MessagesController::class, 'index']);
+Route::get('/create', [MessagesController::class, 'create'])->name('.create');
+Route::post('/', [MessagesController::class, 'store'])->name('.store');
+Route::get('/{thread}', [MessagesController::class, 'show'])->name('.show');
+Route::put('/{thread}', [MessagesController::class, 'update'])->name('.update');
+Route::delete('/{thread}', [MessagesController::class, 'destroy'])->name('.destroy');
 });
 
-require __DIR__.'/auth.php';
+//-------------PROFILE---------------//
+Route::middleware('auth')->group(function () {
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__ . '/auth.php';

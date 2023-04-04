@@ -22,6 +22,10 @@
                     <x-nav-link :href="route('lessonmanager')" :active="request()->routeIs('lessonmanager')">
                         {{ __('Lesson Manager') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('messages')"
+                        :active="request()->routeIs('messages') || request()->routeIs('messages.*')">
+                        Messages @include('messenger.unread-count')
+                    </x-nav-link>
                 </div>
             </div>
 
