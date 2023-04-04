@@ -49,8 +49,9 @@
             </div>
         </form>
 
-        <div id="calendar-container">
-            <div id="calendar"></div>
+        <!-- Add a unique ID to the booklesson calendar container -->
+        <div id="calendar-container-booklesson">
+            <div id="booklesson-calendar"></div>
         </div>
     @endsection
 
@@ -110,7 +111,7 @@
             var lessonForm;
 
             document.addEventListener('DOMContentLoaded', function() {
-                var calendarEl = document.getElementById('calendar');
+                var calendarEl = document.getElementById('booklesson-calendar');
                 lessonForm = document.getElementById('lesson-form');
                 calendar = new FullCalendar.Calendar(calendarEl, {
                     schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
@@ -236,7 +237,7 @@
                     });
                 }
             }
-            
+
             // Add a change event listener for the teacherName select element
             $('#teacherName').on('change', function() {
                 updateBookedSlots($(this).val(), calendar);

@@ -27,16 +27,16 @@
         </div>
     </div>
 
-        <div class="container dashboard-container">
+        <div class="dashboard-calendar-container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card dashboard-card">
-                        <div class="card-header">Booked Lessons</div>
+                        <div class="card-header">Your Booked Lessons</div>
 
                         <div class="card-body dashboard-calendar">
-                            <div id="calendar"></div>
+                            <div id="dashboard-calendar"></div>
                             <div class="text-center mt-3">
-                                <a href="{{ route('lessonmanager') }}" class="btn btn-primary">Make a Payment</a>
+                                <a href="{{ route('lessonmanager') }}" class="btn make-a-payment-button">Make a Payment</a>
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.5/index.global.min.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                var calendarEl = document.getElementById('calendar');
+                var calendarEl = document.getElementById('dashboard-calendar');
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
                     initialView: 'dayGridMonth',

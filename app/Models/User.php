@@ -16,8 +16,6 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, Messagable;
 
-    // use Messageable;
-
     /**
      * The attributes that are mass assignable.
      *
