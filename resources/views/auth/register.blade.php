@@ -1,6 +1,7 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
+        <img src="{{ asset('images/icon.png') }}" alt="{{ config('app.name') }}" width="80">
 
        <!-- First Name -->
        <div>
