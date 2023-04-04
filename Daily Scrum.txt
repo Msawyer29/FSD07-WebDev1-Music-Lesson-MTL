@@ -181,3 +181,33 @@ DONE
 - Working on Admin dashboard 
 3. Need assistance / figure things out:
 - working with git repository, notepad++ and source tree
+
+
+2023/04/04 Mackenzie
+1. Done / not done since last scrum:
+DONE
+- Fixed Profile not displaying bug for Student and Teacher, updated profile Name field to be First Name, Last Name and connect to db
+- Added CSS formatting to /dashboard, /booklesson, /lessonmanagement
+NOT DONE
+- Debug payment routes in web.php/payment process POST route error
+2. To do until next Scrum:
+- Debugg error submnitting payment form, error says GET method not allowed only POST, and I am using POST for all routes where needed, add lesson price to checkout
+- Add CSS to /payment, /messages
+- Work on /teacher_dashboard
+- Change "Book Lesson" for teacher to be "Manage Lesson"/"Update Calendar"?
+- Update Profile info, add remaining fields from user db (phone number, address)
+- Teacher can update their information (price per hour, teacher profile info)
+- Create View for "Teachers", display teacher picture, price per hour, profile info
+3. Need assistance / figure things out:
+- Decide best option: in Teacher dashboard change "Book Lesson" for teacher to be "Manage Lesson"/"Update Calendar"?
+- Debugg error submnitting payment form
+
+2023/04/04 Delara
+1. Done:
+-create messages controller , methods and forms
+Not done: Admin dashboard, implement admin functionality to site
+2. to do until next scrum
+-make slides , preparation to presentation , merge and test
+, deploy on shared hosting
+3. Need assistance /figure things out:
+For merge our project
