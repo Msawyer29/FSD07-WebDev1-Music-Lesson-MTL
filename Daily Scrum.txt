@@ -176,7 +176,7 @@ DONE
 
 2023/04/0‌3 Delara
 1. Done / not done since last scrum:
-- trying to find a way to fix problem after merge
+- trying to find a way to fix problem after merge/ test pull and push
 - create messageController and messenger folder and their style  
 2. To do until next Scrum:
 - Working on Admin dashboard 
