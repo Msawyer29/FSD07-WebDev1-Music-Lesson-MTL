@@ -211,3 +211,17 @@ Not done: Admin dashboard, implement admin functionality to site
 , deploy on shared hosting
 3. Need assistance /figure things out:
 For merge our project
+
+2023/04/05 Mackenzie
+/lessonmanager tables are normall tables now, no scrolling nonsense.
+I truly thought you said to remove just the scroll bars cuz they were tacky.
+Didn't try to pull one on the ole professor - it was more work to figure out how to set up the dang scroll bars than just making them normal tables
+It was a simple fix to process payment successfully. An unfortunate oversight on my end but a good lesson learned.
+
+I had to change the line where I set the API key in my processPayment function in PaymentController
+from this:
+Stripe::setApiKey(env('STRIPE_SECRET'));
+to this:
+Stripe::setApiKey(config('services.stripe.secret'));
+
+By using the config() function instead of env(), I ensure that the correct value is retrieved from the configuration file even if the application's configuration is cached. Live and learn.

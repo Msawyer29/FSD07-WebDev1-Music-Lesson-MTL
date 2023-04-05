@@ -180,7 +180,7 @@
     text-align: center;
     border: 1px solid darkgray;
     padding: 8px;
-    height: 20px; /* Adjust this value to match the height of your table cells */
+    height: 20px; /* Adjust this value to match the height of table cells */
     line-height: 20px; /* Set the line-height to match the height of the table cells */
 }
 
@@ -225,35 +225,15 @@
     background-color: #2779bd;
 }
 
-/* This will add vertical scrolling to the table if there are more than 
-10 rows and remove the max-height property for smaller screens. */
-@media screen and (max-width: 992px) {
-    .table-wrapper {
-      max-height: none;
-      overflow-y: visible;
-    }
-  }
 
 .table-wrapper {
-    max-height: 300px; /* Adjust this value to change the maximum height of the table */
+    /* max-height: auto;  Remove max-height and No Scroll - adjust this value to change the maximum height of the table */
     max-width: 1200px;
     margin: 0 auto;
-    overflow-y: auto;
     border: 6px solid #0C1248;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     margin-top: 10px;
-}
-
-.table-wrapper::after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 10px solid transparent;
-    border-top-color: #ccc;
 }
 
 /*----- payment.blade.php -----*/

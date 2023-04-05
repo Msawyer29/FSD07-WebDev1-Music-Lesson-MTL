@@ -4,11 +4,6 @@
 
 <head>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
-        ::-webkit-scrollbar {
-            display: none;
-        }
-    </style>
 </head>
 
 <x-app-layout>
@@ -73,8 +68,7 @@
                                                                 @csrf
                                                                 <input type="hidden" name="lessonId"
                                                                     value="{{ $lesson->id }}">
-                                                                <button type="submit" class="pay-now-button">Pay
-                                                                    Now</button>
+                                                                <button type="submit" class="pay-now-button">Pay Now</button>
                                                             </form>
                                                         </div>
                                                     </td>

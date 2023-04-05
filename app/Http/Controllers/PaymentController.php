@@ -34,7 +34,7 @@ class PaymentController extends Controller
 
     public function processPayment(Request $request)
     {
-        Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe::setApiKey(config('services.stripe.secret'));
 
         $lessonId = $request->input('lessonId');
         $lesson = Lesson::find($lessonId);
