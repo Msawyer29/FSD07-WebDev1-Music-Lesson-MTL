@@ -1,6 +1,6 @@
 <tr class="{{ $thread->isUnread(Auth::id()) ? 'font-bold' : '' }}">
     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-        <a class="hover:underline" href="{{ route('messages.show', $thread) }}">{{ $thread->creator()->firstname }}{{ $thread->creator()->lastname }}</a>
+        <a class="hover:underline" href="{{ route('messages.show', $thread) }}">{{ $thread->creator()->firstname . ' ' . $thread->creator()->lastname }}</a>
     </td>
     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
         <a class="hover:underline" href="{{ route('messages.show', $thread) }}">{{ $thread->subject }}</a>

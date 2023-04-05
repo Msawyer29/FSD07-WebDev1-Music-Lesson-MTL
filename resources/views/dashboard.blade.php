@@ -36,6 +36,7 @@
                         <div class="card-body dashboard-calendar">
                             <div id="dashboard-calendar"></div>
                             <div class="text-center mt-3">
+                                <a href="{{ route('booklesson') }}" class="btn dashboard-book-a-lesson-btn make-a-payment-button ml-3">Book a Lesson</a>
                                 <a href="{{ route('lessonmanager') }}" class="btn make-a-payment-button">Make a Payment</a>
                             </div>
                         </div>
