@@ -64,13 +64,13 @@ Route::get('/booklesson/get-booked-slots/{teacherId}', [LessonController::class,
 Route::post('/booklesson/check-lesson-conflict', [LessonController::class, 'checkLessonConflict'])->name('booklesson.check-lesson-conflict');
 
 //---------- LESSON MANAGER ROUTES ----------//
-// Route to populate Unpaid Lessons table with all lessons where paymentCOnfirmation field = 0
+// Route to populate Unpaid Lessons table with all lessons where paymentConfirmation field = 0
 Route::get('/lessonmanager', [CalendarController::class, 'unpaidLessons'])->name('lessonmanager');
 
 //---------- LESSON PAYMENT ROUTES ----------//
 Route::post('/payment-initiate/{lessonId}', [PaymentController::class, 'initiatePayment'])->name('payment.initiate');
 Route::post('/payment-process', [PaymentController::class, 'processPayment'])->name('payment.process');
-Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
+//Route::get('/lessonmanager', [PaymentController::class, 'success'])->name('lessonmanager');
 
 //----------MESSENGER--------------------//
 Route::group(['middleware' => 'auth', 'prefix' => 'messages', 'as' => 'messages'], function () {

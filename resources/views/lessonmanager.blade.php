@@ -13,15 +13,20 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-between items-center">
-                        <span>
-                            {{ __('Hello ') }}{{ Auth::user()->firstname }},{{ __(' here you can modify, cancel and manage payments for your lessons.') }}
+                    <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-center items-center flex-col">
+                        <span class="text-center">
+                            {{ __('Hello ') }}{{ Auth::user()->firstname }},{{ __(' in your Lesson Manager you can view unpaid lessons, make payments and view lessons that you have completed payments for.') }}
                         </span>
+                        @if (session('success'))
+                            <div class="mt-4 text-green-700 font-bold text-center">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
-
+       
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
@@ -53,7 +58,9 @@
                                                     <td>{{ $lesson->bookingTS }}</td>
                                                     <td class="text-center">
                                                         <div class="pay-now-container">
-                                                            <form action="{{ route('payment.initiate', ['lessonId' => $lesson->id]) }}" method="POST">
+                                                            <form
+                                                                action="{{ route('payment.initiate', ['lessonId' => $lesson->id]) }}"
+                                                                method="POST">
                                                                 @csrf
                                                                 <input type="hidden" name="lessonId"
                                                                     value="{{ $lesson->id }}">

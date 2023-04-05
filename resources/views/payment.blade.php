@@ -61,7 +61,7 @@
             </div>
             <script>
                 // Create a Stripe client.
-                var stripe = Stripe('{{ env('STRIPE_KEY') }}');
+                var stripe = Stripe('{{ $stripeKey }}');
 
                 // Create an instance of Elements.
                 var elements = stripe.elements();

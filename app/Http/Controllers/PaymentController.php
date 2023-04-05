@@ -18,22 +18,22 @@ use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
-    public function initiatePayment($lessonId) //Remove Request - only parameter being passed in the request is the lessonId, which is already being retrieved from the URL parameters in the method signature.
+    public function initiatePayment($lessonId)
     {
-        //Log::info('Request method: ' . $request->method()); // Add this line to log the request method
-
         $lesson = Lesson::find($lessonId);
 
         if (!$lesson) {
             return back()->with('error', 'Lesson not found.');
         }
 
-        return view('payment', ['lesson' => $lesson]);
+        $stripeKey = env('STRIPE_KEY');
+
+        return view('payment', ['lesson' => $lesson, 'stripeKey' => $stripeKey]);
     }
 
     public function processPayment(Request $request)
     {
-        Stripe::setApiKey(env('sk_test_51MsdkuKcBJEP5uncIuqppZQjusxkSmyoUckZlJcSWguGqBwhYzJH3saJufEut6aGoBLRdPlWN9PvnL5xZPEf734O00pSNYU9Wx'));
+        Stripe::setApiKey(env('STRIPE_SECRET'));
 
         $lessonId = $request->input('lessonId');
         $lesson = Lesson::find($lessonId);
@@ -59,7 +59,7 @@ class PaymentController extends Controller
 
             Log::info('Payment successful');
 
-            return redirect()->route('payment.success')->with('success', 'Payment successful!');
+            return redirect()->route('lessonmanager')->with('success', "Thank you, your payment for the '{$lesson->lessonType}' lesson on '{$lesson->startDateTime}' with '{$lesson->teacherId}' was successful.");
         } catch (\Stripe\Exception\CardException $e) {
             Log::error('Card error: ' . $e->getMessage());
             return back()->with('error', 'Card error: ' . $e->getMessage());
@@ -85,10 +85,5 @@ class PaymentController extends Controller
             // add console log here
             Log::info('Redirected to payment success page');
         }
-    }
-
-    public function success()
-    {
-        return view('payment-success');
     }
 }
