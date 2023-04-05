@@ -152,6 +152,15 @@
     margin-bottom: 40px;
 }
 
+.paid-lessons-header {
+    text-align: center;
+    font-weight: bold;
+    color: #111827;
+    font-size: x-large;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
 .lesson-manager-table {
     border-collapse: collapse;
     margin: 0 auto;

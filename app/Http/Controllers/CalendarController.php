@@ -49,6 +49,10 @@ class CalendarController extends Controller
             ->where('paymentConfirmation', 0)
             ->get();
 
-        return view('lessonmanager', compact('unpaidLessons'));
+        $paidLessons = Lesson::where('studentId', $studentId)
+            ->where('paymentConfirmation', 1)
+            ->get();
+
+        return view('lessonmanager', compact('unpaidLessons', 'paidLessons'));
     }
 }
