@@ -1,3 +1,7 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 <head>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -51,11 +55,11 @@
                                             @foreach ($unpaidLessons as $lesson)
                                                 <tr>
                                                     <td>{{ $lesson->id }}</td>
-                                                    <td>{{ $lesson->startDateTime }}</td>
+                                                    <td>{{ Carbon::parse($lesson->startDateTime)->format('F j, Y, g:i a') }}</td>
                                                     <td>{{ $lesson->teacher->firstname }} {{ $lesson->teacher->lastname }}
                                                     </td>
                                                     <td>{{ $lesson->lessonType }}</td>
-                                                    <td>{{ $lesson->bookingTS }}</td>
+                                                    <td>{{ Carbon::parse($lesson->bookingTS)->format('F j, Y, g:i a') }}</td>
                                                     <td class="text-center">
                                                         <div class="pay-now-container">
                                                             <form
@@ -64,11 +68,45 @@
                                                                 @csrf
                                                                 <input type="hidden" name="lessonId"
                                                                     value="{{ $lesson->id }}">
-                                                                <button type="submit" class="pay-now-button">Pay
-                                                                    Now</button>
+                                                                <button type="submit" class="pay-now-button">Pay Now</button>
                                                             </form>
                                                         </div>
                                                     </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header paid-lessons-header">Paid Lessons</div>
+                
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <div class="table-wrapper">
+                                    <table class="table table-bordered table-striped lesson-manager-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Lesson Id</th>
+                                                <th>Lesson Date & Time</th>
+                                                <th>Teacher</th>
+                                                <th>Lesson Type</th>
+                                                <th>Date & Time Booked</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($paidLessons as $lesson)
+                                                <tr>
+                                                    <td>{{ $lesson->id }}</td>
+                                                    <td>{{ Carbon::parse($lesson->startDateTime)->format('F j, Y, g:i a') }}</td>
+                                                    <td>{{ $lesson->teacher->firstname }} {{ $lesson->teacher->lastname }}
+                                                    </td>
+                                                    <td>{{ $lesson->lessonType }}</td>
+                                                    <td>{{ Carbon::parse($lesson->bookingTS)->format('F j, Y, g:i a') }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
