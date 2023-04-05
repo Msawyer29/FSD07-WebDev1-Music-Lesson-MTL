@@ -15,6 +15,7 @@ use Stripe\Exception\AuthenticationException;
 use Stripe\Exception\ApiConnectionException;
 use Stripe\Exception\ApiErrorException;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
@@ -26,7 +27,7 @@ class PaymentController extends Controller
             return back()->with('error', 'Lesson not found.');
         }
 
-        $stripeKey = env('STRIPE_KEY');
+        $stripeKey = config('services.stripe.key');
 
         return view('payment', ['lesson' => $lesson, 'stripeKey' => $stripeKey]);
     }
@@ -59,7 +60,11 @@ class PaymentController extends Controller
 
             Log::info('Payment successful');
 
-            return redirect()->route('lessonmanager')->with('success', "Thank you, your payment for the '{$lesson->lessonType}' lesson on '{$lesson->startDateTime}' with '{$lesson->teacherId}' was successful.");
+            // Updated success message
+            $formattedDate = Carbon::parse($lesson->startDateTime)->format('F j, Y, g:i a');
+            $teacherName = $lesson->teacher->firstname . ' ' . $lesson->teacher->lastname;
+            return redirect()->route('lessonmanager')->with('success', "Thank you, your payment for the {$lesson->lessonType} lesson on {$formattedDate} with {$teacherName} was successful.");
+
         } catch (\Stripe\Exception\CardException $e) {
             Log::error('Card error: ' . $e->getMessage());
             return back()->with('error', 'Card error: ' . $e->getMessage());
