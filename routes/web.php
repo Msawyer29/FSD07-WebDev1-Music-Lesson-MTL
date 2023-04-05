@@ -89,4 +89,8 @@ Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.up
 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//-------------TEACHER_DASHBOARD---------------//
+// Route to populate teacher calendar 
+Route::get('/teacher_dashboard', [App\Http\Controllers\CalendarController::class, 'teacherDashboard'])->name('teacher_dashboard');
+
 require __DIR__ . '/auth.php';
