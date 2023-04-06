@@ -24,9 +24,11 @@
                         {{ __('Lesson Manager') }}
                     </x-nav-link>
                     @endif
+                    @if (Auth::user()->role !== 'student')
                     <x-nav-link :href="route('teacher.lesson_manager')" :active="request()->routeIs('teacher.lesson_manager')">
                         {{ __('Lesson Manager') }}
                     </x-nav-link>
+                    @endif
                     <x-nav-link :href="route('messages')" :active="request()->routeIs('messages') || request()->routeIs('messages.*')">
                         Messages @include('messenger.unread-count')
                     </x-nav-link>
