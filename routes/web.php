@@ -89,8 +89,15 @@ Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.up
 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//-------------TEACHER_DASHBOARD---------------//
-// Route to populate teacher calendar 
-Route::get('/teacher_dashboard', [App\Http\Controllers\CalendarController::class, 'teacherDashboard'])->name('teacher_dashboard');
+//-------------TEACHER ROUTES---------------//
+Route::middleware(['auth'])->group(function () {
+    // Route to populate teacher calendar in /teacher_dashboard
+    Route::get('/teacher_dashboard', [App\Http\Controllers\CalendarController::class, 'teacherDashboard'])->name('teacher_dashboard');
+    // Route to cancel lesson from /teacher_lessonmanager and teacherLessonManager function
+    Route::get('/teacher_lessonmanager', [App\Http\Controllers\LessonController::class, 'teacherLessonManager'])->name('teacher.lesson_manager');
+    // Route to cancel lesson
+    Route::post('/teacher/cancel_lesson/{lessonId}', [App\Http\Controllers\LessonController::class, 'cancelLesson'])->name('teacher.cancel_lesson');
+});
+
 
 require __DIR__ . '/auth.php';

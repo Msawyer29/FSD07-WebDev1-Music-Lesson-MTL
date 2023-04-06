@@ -15,13 +15,16 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <!-- Teachers Do Not See Book Lesson view -->
+                    <!-- Teachers Do Not See 'Book Lesson' or (Student) 'Lesson Manager'view -->
                     @if (Auth::user()->role !== 'teacher')
                     <x-nav-link :href="route('booklesson')" :active="request()->routeIs('booklesson')">
                         {{ __('Book Lesson') }}
                     </x-nav-link>
-                    @endif
                     <x-nav-link :href="route('lessonmanager')" :active="request()->routeIs('lessonmanager')">
+                        {{ __('Lesson Manager') }}
+                    </x-nav-link>
+                    @endif
+                    <x-nav-link :href="route('teacher.lesson_manager')" :active="request()->routeIs('teacher.lesson_manager')">
                         {{ __('Lesson Manager') }}
                     </x-nav-link>
                     <x-nav-link :href="route('messages')" :active="request()->routeIs('messages') || request()->routeIs('messages.*')">

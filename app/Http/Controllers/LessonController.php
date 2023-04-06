@@ -103,4 +103,61 @@ class LessonController extends Controller
             ]);
         }
     }
+
+    public function teacherLessonManager()
+    {
+        // Fetch unpaid lessons for the teacher
+        $unpaidLessons = Lesson::where('teacherId', Auth::id())
+            ->where('status', 'booked')
+            ->where('paymentConfirmation', 0)
+            ->orderBy('startDateTime')
+            ->get();
+    
+        // Fetch paid lessons for the teacher
+        $paidLessons = Lesson::where('teacherId', Auth::id())
+            ->where('status', 'booked')
+            ->where('paymentConfirmation', 1)
+            ->orderBy('startDateTime')
+            ->get();
+    
+        // Add the student name to each unpaid and paid lesson
+        foreach ($unpaidLessons as $lesson) {
+            $lesson->studentName = $lesson->student->firstname . ' ' . $lesson->student->lastname;
+        }
+        foreach ($paidLessons as $lesson) {
+            $lesson->studentName = $lesson->student->firstname . ' ' . $lesson->student->lastname;
+        }
+    
+        // Fetch the canceled lessons for the teacher
+        $canceledLessons = Lesson::where('teacherId', Auth::id())
+            ->where('status', 'cancelled')
+            ->orderBy('startDateTime')
+            ->get();
+    
+        // Add the student name to each canceled lesson
+        foreach ($canceledLessons as $lesson) {
+            $lesson->studentName = $lesson->student->firstname . ' ' . $lesson->student->lastname;
+        }
+    
+        return view('teacher_lessonmanager', compact('unpaidLessons', 'paidLessons', 'canceledLessons'));
+    }
+
+
+    // Teacher can delete unpaid lessons if they are not older than currentDateTime
+    public function cancelLesson(Request $request, $lessonId)
+    {
+        $lesson = Lesson::findOrFail($lessonId);
+
+        // Check if the authenticated user is the teacher for the lesson
+        if (Auth::id() !== $lesson->teacherId) {
+            return redirect()->back()->withErrors(['error' => 'You are not authorized to cancel this lesson.']);
+        }
+
+        // Update the lesson status to 'cancelled' and log the cancellation timestamp
+        $lesson->status = 'cancelled';
+        $lesson->cancelTS = Carbon::now(); // Add this line to log the cancellation timestamp
+        $lesson->save();
+
+        return redirect()->back()->with('success', 'Lesson has been canceled successfully.');
+    }
 }

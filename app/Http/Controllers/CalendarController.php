@@ -40,6 +40,7 @@ class CalendarController extends Controller
 
         return view('dashboard', compact('events'));
     }
+    
     // /lessonmanager routes for populating the paid and unpaid lesson tables for student (I should relocate)
     public function unpaidLessons()
     {
