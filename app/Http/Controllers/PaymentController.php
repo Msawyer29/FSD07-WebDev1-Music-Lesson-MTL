@@ -56,6 +56,7 @@ class PaymentController extends Controller
 
             // Update the lesson payment status here
             $lesson->paymentConfirmation = 1;
+            $lesson->paidTS = Carbon::now(); // Add this line to log the payment timestamp
             $lesson->save();
 
             Log::info('Payment successful');

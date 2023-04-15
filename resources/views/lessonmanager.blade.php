@@ -96,6 +96,7 @@
                                                 <th>Teacher</th>
                                                 <th>Lesson Type</th>
                                                 <th>Date & Time Booked</th>
+                                                <th>Date & Time Paid</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -107,6 +108,7 @@
                                                     </td>
                                                     <td>{{ $lesson->lessonType }}</td>
                                                     <td>{{ Carbon::parse($lesson->bookingTS)->format('F j, Y, g:i a') }}</td>
+                                                    <td>{{ Carbon::parse($lesson->paidTS)->format('F j, Y, g:i a') }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

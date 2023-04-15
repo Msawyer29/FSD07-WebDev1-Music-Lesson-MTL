@@ -13,25 +13,28 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-between items-center">
-                        <span>
-                            {{ __('Hello ') }}{{ Auth::user()->firstname }},{{ __(" you're logged in as a ") }}{{ Auth::user()->role }}{{ __('.') }}
-                        </span>
-                        @if (session('success'))
-                            <span class="text-green-700">
-                                {{ session('success') }}
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <div>
+                            <span>
+                                {{ __('Hello ') }}{{ Auth::user()->firstname }},{{ __(" you're logged in as a ") }}{{ Auth::user()->role }}{{ __('.') }}
+                                {{ __('On your dashboard calendar, booked lessons appear ') }}<span style="font-weight: bold; color: #4299e1;">{{ __('blue') }}</span>{{ __(' while canceled lessons are in ') }}<span style="font-weight: bold; color: #f56565;">{{ __('red') }}</span>{{ __('.') }}
                             </span>
+                        </div>
+                        @if (session('success'))
+                            <div class="mt-4 text-green-700">
+                                {{ session('success') }}
+                            </div>
                         @endif
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
 
         <div class="dashboard-calendar-container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card dashboard-card">
-                        <div class="card-header">Your Booked Lessons</div>
+                        <div class="card-header">Lesson Calendar</div>
 
                         <div class="card-body dashboard-calendar">
                             <div id="dashboard-calendar"></div>
@@ -58,6 +61,15 @@
                     initialView: 'dayGridMonth',
                     height: 'auto',
                     contentHeight: 'auto',
+                    eventClassNames: function(arg) {
+                        if (arg.event.extendedProps.status === 'cancelled') {
+                            return ['cancelled-event'];
+                        } else if (arg.event.extendedProps.past) {
+                            return ['past-event'];
+                        } else {
+                            return ['booked-event'];
+                        }
+                    },
                     events: {!! isset($events) ? json_encode($events) : '[]' !!}
                 });
 

@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container custom-container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
@@ -100,19 +100,18 @@
                                                 <th>Student</th>
                                                 <th>Lesson Type</th>
                                                 <th>Date & Time Booked</th>
+                                                <th>Date & Time Paid</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($paidLessons as $lesson)
                                                 <tr>
                                                     <td>{{ $lesson->id }}</td>
-                                                    <td>{{ Carbon::parse($lesson->startDateTime)->format('F j, Y, g:i a') }}
-                                                    </td>
-                                                    <td>{{ $lesson->student->firstname }} {{ $lesson->student->lastname }}
-                                                    </td>
+                                                    <td>{{ Carbon::parse($lesson->startDateTime)->format('F j, Y, g:i a') }}</td>
+                                                    <td>{{ $lesson->student->firstname }} {{ $lesson->student->lastname }}</td>
                                                     <td>{{ $lesson->lessonType }}</td>
-                                                    <td>{{ Carbon::parse($lesson->bookingTS)->format('F j, Y, g:i a') }}
-                                                    </td>
+                                                    <td>{{ Carbon::parse($lesson->bookingTS)->format('F j, Y, g:i a') }}</td>
+                                                    <td>{{ Carbon::parse($lesson->paidTS)->format('F j, Y, g:i a') }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

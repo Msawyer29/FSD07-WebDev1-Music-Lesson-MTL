@@ -16,8 +16,7 @@ class CalendarController extends Controller
 
         // Get the booked lessons for the student
         $bookedLessons = Lesson::where('studentId', Auth::id())
-            ->where('status', 'booked')
-            ->where('startDateTime', '>=', Carbon::now())
+            ->whereIn('status', ['booked', 'cancelled'])
             ->orderBy('startDateTime')
             ->get();
 
@@ -32,15 +31,15 @@ class CalendarController extends Controller
                 'title' => $lesson->lessonType . ' lesson - ' . $lesson->teacherName,
                 'start' => $lesson->startDateTime,
                 'end' => $lesson->endDateTime,
-                'backgroundColor' => 'blue',
-                'borderColor' => 'black',
-                'textColor' => 'white'
+                'status' => $lesson->status,
+                'past' => Carbon::parse($lesson->startDateTime)->isPast()
             ];
         })->toArray();
 
+
         return view('dashboard', compact('events'));
     }
-    
+
     // /lessonmanager routes for populating the paid and unpaid lesson tables for student (I should relocate)
     public function unpaidLessons()
     {

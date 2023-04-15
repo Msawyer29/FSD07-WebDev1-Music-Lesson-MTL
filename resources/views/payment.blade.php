@@ -33,6 +33,9 @@
                                         <p><strong>Lesson Id:</strong> {{ $lesson->id }}</p>
                                         <p><strong>Lesson Date & Time:</strong>
                                             {{ Carbon::parse($lesson->startDateTime)->format('F j, Y, g:i a') }}</p>
+                                        <p><strong>Teacher:</strong> {{ $lesson->teacher->firstname }}
+                                            {{ $lesson->teacher->lastname }}</p>
+                                        <p><strong>Lesson Type:</strong> {{ $lesson->lessonType }}</p>
                                         <p><strong>Lesson Price:</strong> ${{ $lesson->teacher->teacher_price_per_hour }}
                                         </p>
                                     </div>

@@ -10,12 +10,12 @@
             </h2>
         </x-slot>
 
-        <div class="py-12">
+        <div class="py-12 custom-wrapper">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         {{ __('Hello ') }}{{ Auth::user()->firstname }},{{ __(" you're logged in as a ") }}{{ Auth::user()->role }}{{ __('.') }}
-                        {{ __('Booked lessons appear blue while canceled lessons are in red.') }}
+                        {{ __('On your dashboard calendar, booked lessons appear ') }}<span style="font-weight: bold; color: #4299e1;">{{ __('blue') }}</span>{{ __(' while canceled lessons are in ') }}<span style="font-weight: bold; color: #f56565;">{{ __('red') }}</span>{{ __('.') }}
                     </div>                    
                 </div>
             </div>
@@ -27,9 +27,9 @@
                     <div class="card dashboard-card">
                         <div class="card-header">Lesson Calendar</div>
 
-                        <div class="card-body dashboard-calendar">
+                        <div class="card-body dashboard-calendar" style="padding-bottom: 2rem;">
                             <div id="teacher-dashboard-calendar"></div>
-                        </div>
+                        </div>                        
                     </div>
                 </div>
             </div>
